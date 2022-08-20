@@ -1,0 +1,677 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "sean",
+        "version": "1.0.0",
+        "title": "Seans-Python3-Flask-Rest-Boilerplate",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "servers": [{
+        "url": "/api/v1/"
+    }],
+    "paths": {
+        "/ldap/register": {
+            "post": {
+                "tags": [
+                    "LDAP"
+                ],
+                "summary": "register request",
+                "requestBody": {
+                    "description": "register Request Post Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Ldap_Register"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/registerRequest"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/ldap/login": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "LDAP"
+                ],
+                "summary": "User authentication",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/authentication"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/authentication"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Book request not found."
+                    }
+                }
+            }
+        },
+        "/ldap/2FA": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "LDAP"
+                ],
+                "summary": "User authentication",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/2FA"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/2FA"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Book request not found."
+                    }
+                }
+            }
+        },
+        "/ldap/research/group_user": {
+            "post": {
+                "security": [
+                    {
+                        "unauthenticated": []
+                    }
+                ],
+                "tags": [
+                    "LDAP"
+                ],
+                "summary": "Search ldap user group ",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Usergroup"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Usergroup"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Book request not found."
+                    }
+                }
+            }
+        },
+        "/ldap/users/organigram": {
+            "get": {
+                "security": [
+                    {
+                        "unauthenticated": []
+                    }
+                ],
+                "tags": [
+                    "LDAP"
+                ],
+                "summary": "Search ldap user group ",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/organigrame"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Book request not found."
+                    }
+                }
+            }
+        },
+
+        "/application/all": {
+            "get": {
+                "security": [
+                    {
+                        "unauthenticated": []
+                    }
+                ],
+                "tags": [
+                    "Application"
+                ],
+                "summary": "Delete an existing application ",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Not found."
+                    }
+                }
+            }
+        },
+        "/application/create": {
+            "post": {
+                "security": [
+                    {
+                        "unauthenticated": []
+                    }
+                ],
+                "tags": [
+                    "Application"
+                ],
+                "summary": "create a new application ",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/create_app"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Book request not found."
+                    }
+                }
+            }
+        },
+        "/application/account/create": {
+            "post": {
+                "security": [
+                    {
+                        "unauthenticated": []
+                    }
+                ],
+                "tags": [
+                    "Application"
+                ],
+                "summary": "Delete an existing application ",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/add_acount"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Book request not found."
+                    }
+                }
+            }
+        },
+        "/application/account/all": {
+            "post": {
+                "security": [
+                    {
+                        "unauthenticated": []
+                    }
+                ],
+                "tags": [
+                    "Application"
+                ],
+                "summary": "Get all account for an app",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/app_account"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Book request not found."
+                    }
+                }
+            }
+        },
+        "/application/delete": {
+            "delete": {
+                "security": [
+                    {
+                        "unauthenticated": []
+                    }
+                ],
+                "tags": [
+                    "Application"
+                ],
+                "summary": "Delete an existing application ",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/delete_app"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Book request not found."
+                    }
+                }
+            }
+        },
+
+        "/secret/create": {
+            "post": {
+                "security": [
+                    {
+                        "unauthenticated": []
+                    }
+                ],
+                "tags": [
+                    "Secret"
+                ],
+                "summary": "create a new application ",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/create_secret"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Book request not found."
+                    }
+                }
+            }
+        },
+        "/application/account/search": {
+            "post": {
+                "security": [
+                    {
+                        "unauthenticated": []
+                    }
+                ],
+                "tags": [
+                    "Application"
+                ],
+                "summary": "create a new application ",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/search_account"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Misunderstood Request."
+                    },
+                    "404": {
+                        "description": "Failed. Book request not found."
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        },
+        "schemas": {
+            "registerRequest": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "username": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "Ldap_Register": {
+                "type": "object",
+                "properties": {
+                    "firstname": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "managerID":{
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "tel":{
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "authentication": {
+                "type": "object",
+                "properties": {
+                    "uid": {
+                        "type": "string",
+                        "format": "ldapuid"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "2FA": {
+                        "type": "string",
+                        "format": "string",
+                        "example":"No"
+                    },
+                    "code": {
+                        "type": "string",
+                        "format": "string",
+                        "example":"ex:655554"
+                    }
+                }
+            },
+            "2FA": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    }
+                }
+            },
+            "Usergroup": {
+                "type": "object",
+                "properties": {
+                    "user_dn": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "base_srch": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "filter": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "attr": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                }
+            },
+            "organigrame": {
+                "type": "object",
+                "properties": {
+                    "basedn": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "searchFilter": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "create_app": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "format": "Windows"
+                    },
+                    "type": {
+                        "type": "string",
+                        "format": "OS"
+                    }
+                }
+            },
+            "create_secret": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "format": "Windows"
+                    },
+                    "id": {
+                        "type": "string",
+                        "format": "Windows"
+                    },
+                    "secret": {
+                        "type": "string",
+                        "format": "Windows"
+                    }
+                }
+            },
+            "delete_app": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "format": "Windows"
+                    }
+                }
+            },
+            "add_acount": {
+                "type": "object",
+                "properties": {
+                    "app_id": {
+                        "type": "string",
+                        "format": "Windows"
+                    },
+                    "username": {
+                        "type": "string",
+                        "format": "OS"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "OS"
+                    }
+                }
+            },
+            "app_account": {
+                "type": "object",
+                "properties": {
+                    "owner_id" : {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "app_id": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "search_account": {
+                "type": "object",
+                "properties": {
+                    "owner_id" : {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "app_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "account_username": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            }
+        }
+    }
+}

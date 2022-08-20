@@ -1,0 +1,3289 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "sean",
+        "version": "1.0.0",
+        "title": "Seans-Python3-Flask-Rest-Boilerplate",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "servers": [{
+        "url": "/api/v1/"
+    }],
+    "paths": {
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "register request",
+                "requestBody": {
+                    "description": "register Request Post Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Auth_Register"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/registerRequest"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/auth/activation": {
+            "put": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Account activation",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/activation"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User authentication",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/authentication"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/authentication"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User authentication",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/authentication"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/auth/2FA/register": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User authentication",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/2FAreg"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/2FA"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/auth/2FA/deactivate": {
+            "put": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User double authentication deactivation",
+                "requestBody": {
+                    "description": "User double authentication deactivation",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/2FAreg"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/2FAreg"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/auth/2FA/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "User authentication",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/2FAlog"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/2FAlog"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/auth/update": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "register request",
+                "requestBody": {
+                    "description": "register Request Post Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Auth_update"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Auth_update"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/auth/forgot/password": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Forgot password",
+                "requestBody": {
+                    "description": "This will send an email to a user for reseting password",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/forgot_password"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Auth_change_password"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/auth/change/password": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "register request",
+                "requestBody": {
+                    "description": "register Request Post Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Auth_change_password"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Auth_change_password"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/auth/change/password/{token}": {
+            "put": {
+                "parameters": [{
+                    "name": "token",
+                    "in": "path",
+                    "required": true,
+                    "description": "reset token",
+                    "type": "string"
+                }],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "register request",
+                "requestBody": {
+                    "description": "register Request Post Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Auth_reset_password"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Auth_reset_password"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/auth/admin/change/password": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "register request",
+                "requestBody": {
+                    "description": "register Request Post Object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Auth_admin_change_password"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Auth_admin_change_password"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+
+        "/organigram/roles": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Get all the roles",
+                "responses": {
+                    "200": {
+                        "description": "Get all existing role, To do that we must provide the bearer token we get when we logged in in the request authorization header",
+                        "schema": {
+                            "$ref": "#/components/schemas/organigrame"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/role/create": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Create a new role",
+                "requestBody": {
+                    "description": "Create a new role, To do that we must provide the bearer token we get when we logged in in the request authorization header and the name of the role in the request body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/deleteAddRole"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/components/schemas/deleteAddRole"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/role/delete": {
+            "delete": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Delete a new role",
+                "requestBody": {
+                    "description": "Delete a new role, To do that we must provide the bearer token we get when we logged in in the request authorization header and the name of the role in the request body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/deleteAddRole"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok",
+                        "schema": {
+                            "$ref": "#/components/schemas/deleteAddRole"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/register": {
+            "post": {
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "register user to organigram",
+                "requestBody": {
+                    "description": "This will register and add a new user to organigram, We must provide the request body params like : 'firstname', 'lastname', 'email', 'password', 'tel'(optional), 'managerID'(optional), 'businessCategory'(the user's role in the enterprise) and '2fa'(this is optional and must be yes or no default is no. so basicaly this tells if user will authenticate with 2fa) ",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Organigram_Register"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/registerRequest"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/organigram/user/update": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "User update information",
+                "requestBody": {
+                    "description": "This will be using for updating information of a user, So to do that we must provide the bearer token we get when we logged in in the request authorization header and in the request body we must provide at least 'uid'(uid of the user we want to update info)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Auth_update"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Auth_update"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/rights/request": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "User rights request",
+                "requestBody": {
+                    "description": "This will send an email to the manager of a user which will ask the manager to accept or decline the right request, So to do that we must provide the bearer token we get when we logged in in the request authorization header and in the request body we must provide 'user_uid'(uid of the current logged user), 'group_name'(the name of the role user want)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Auth_right_request"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Auth_grant"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/organigram/user/rights/grant_deny/{taskid}": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [{
+                    "name": "taskid",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the task",
+                    "type": "string"
+                }],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "User rights grant",
+                "requestBody": {
+                    "description": "This will grant or deny the request of user. So to do that we must provide the bearer token we get when we logged in in the request authorization header, in the url 'taskid' and in the request body we must provide 'action'(this has two values 'grant' or 'deny')",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Auth_grant_deny"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Auth_grant"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/hierarchy": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [{
+                    "name": "size",
+                    "in": "query",
+                    "required": true,
+                    "description": "size of the returned json",
+                    "type": "string"
+                }],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "This will return all of the users information and thier childs present in the organogram, So to do that we must provide the bearer token we get when we logged in in the request authorization header",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/organigrame"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/all": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "size",
+                        "in": "query",
+                        "required": true,
+                        "description": "size of the returned json",
+                        "type": "string"
+                    },
+                    {
+                        "name": "with_fils",
+                        "in": "query",
+                        "required": true,
+                        "description": "if we want to return user with thier fils",
+                        "type": "string"
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "This will return all of the users information and thier childs present in the organogram, So to do that we must provide the bearer token we get when we logged in in the request authorization header",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/organigrame"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/info": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "This will return all of a user information, So to do that we must provide the bearer token we get when we logged in in the request authorization header",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/organigrame"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/childs": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Get a manager employees",
+                "requestBody": {
+                    "description": "This will return a list of all user who this manager is assign to. We must provide the bearer token we get when we logged in in the request authorization header and in the request body 'uid'(uid of the manager we want ot find employees)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/userChilds"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/userChilds"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/add/manager": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Add manager to user",
+                "requestBody": {
+                    "description": "This will add a manager to a user who does not have already one, So to do that we must provide the bearer token we get when we logged in in the request authorization header and in the request body 'uid'(uid of the user we want to add a manager), 'managerID'(uid of the manager we want to assign to the user)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/add_manager"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/add_manager"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/change/password": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "user change password",
+                "requestBody": {
+                    "description": "This will change the user password, So to do that we must provide the bearer token we get when we logged in in the request authorization header and 'uid'(uid of the current logged user), 'oldPassword'(user old password) and 'newPassword'(the new password)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Auth_change_password"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Auth_change_password"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/admin/change/password": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Admin change password",
+                "requestBody": {
+                    "description": "This will be executing by admins and will change a user password. So to do that we must provide the bearer token we get when we logged in in the request authorization header and in the request body we must provide 'user_uid'(uid of the user we want to change the password), 'admin_uid'(uid of the admin who want to change a user password), 'admin_password'(password of the admin who want to change a user password) and finaly 'newPassword'(the new password for the user)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Auth_admin_change_password"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/components/schemas/Auth_admin_change_password"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+
+        "/organigram/application/all": {
+            "get": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Get all the applications of organigram",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/application/create": {
+            "post": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Create new application",
+                "requestBody": {
+                    "description": "This will create a new application for organigram",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/organigram_create_app"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/application/update": {
+            "put": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Update application",
+                "requestBody": {
+                    "description": "This will update application",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/organigram_create_app"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/profil/role/all": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Get all the roles",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/profil/role/create": {
+            "post": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Create new role",
+                "requestBody": {
+                    "description": "This feature allows you to create a new role. ",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/create_profil"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/profil/role/update": {
+            "put": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Update new profil.",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/update_profil"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/profil/role/delete": {
+            "delete": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Delete a role",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/deleteRole"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/profil/technical/all": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Get all the technical_profiles",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/profil/technical/create": {
+            "post": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Create new role",
+                "requestBody": {
+                    "description": "This feature allows you to create a new technical_profile. ",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/create_technical_profil"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/profil/technical/update": {
+            "put": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Update new technical_profile.",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/update_technical_profil"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/profil/technical/delete": {
+            "delete": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Delete a technical_profiles",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/deleteTechnicalProfil"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+
+        "/organigram/profil/role/request": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Ask a profil role",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/askAproval"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/add/profil_role": {
+            "put": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Add a profil role to a user",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/directAproval"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/remove/profil_role": {
+            "put": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Add a profil role to a user",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/directAproval"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/profil_role/grant_deny/{token}": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [{
+                    "name": "token",
+                    "in": "path",
+                    "required": true,
+                    "description": "the token",
+                    "type": "string"
+                }],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Grant or deny profile role",
+                "requestBody": {
+                    "description": "Grant or deny profile role for a user, params: answer ('yes' or 'no'), token (the token in the request path)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/grant_deny"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/profile_role_request/{token}": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [{
+                    "name": "token",
+                    "in": "path",
+                    "required": true,
+                    "description": "the token",
+                    "type": "string"
+                }],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Get a profile role request",
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/profile_role_request/all": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Get all the profile role request of users",
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/profile_role_request/history": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Get all the profile role request of users",
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/my_request/all": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Get all the profile role request not approved/rejected of the connected user",
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/organigram/user/my_request/history": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Organigramme"
+                ],
+                "summary": "Get all the profile role request approved or rejected of the connected user",
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        
+        "/application/all": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Application"
+                ],
+                "summary": "Get list of available application",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found."
+                    }
+                }
+            }
+        },
+        "/application/create": {
+            "post": {
+                "security": [{
+                    "bearerAuth": []
+                }],
+                "tags": [
+                    "Application"
+                ],
+                "summary": "Create new application",
+                "requestBody": {
+                    "description": "This feature allows you to create a new application. To create an application you have to provide the name (ex: human) and the type (ex: gender) and then the fields needed to use this application with the value 'true' or 'false' to indicate if this field is mandatory or not.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/create_app"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/application/account/create": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Application"
+                ],
+                "summary": "Create an account for an application ",
+                "requestBody": {
+                    "description": "This feature allows you to create an account for an application. The required fields are the ID (app_id) of the application, a username, and the user ID (user_id).",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/add_acount"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/application/account/all": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Application"
+                ],
+                "summary": "Get all account in azumaril (this is for admins)",
+                "requestBody": {
+                    "description": "This feature returns the complete list of accounts created for an application. The required field is the ID (app_id) of the application in question.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/app_account"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/application/account/app/user/all": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Application"
+                ],
+                "summary": "Get all account for an app of a user",
+                "requestBody": {
+                    "description": "This feature returns the complete list of accounts created for an application for a user. The required fields are the application ID (app_id) and the user ID (user_id).",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/userAccount"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/application/account/user/all": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Application"
+                ],
+                "summary": "Get all account of all app for an user",
+                "requestBody": {
+                    "description": "This feature returns a list of all accounts for all applications. The only required field is the user ID.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/userAllAccount"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/application/account/search": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Application"
+                ],
+                "summary": "search an account for an application",
+                "requestBody": {
+                    "description": "This feature allows you to search for an application account by username and application ID. See the remaining required fields below ",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/search_account"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/application/delete": {
+            "delete": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Application"
+                ],
+                "summary": "Delete an existing application ",
+                "requestBody": {
+                    "description": "This feature allows you to delete an application previously created just with the name.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/delete_app"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+
+        "/password/mail/update": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Password"
+                ],
+                "summary": "Update password of axetag mailboxes.",
+                "requestBody": {
+                    "description": "This is a feature to change the password of axetag mailboxes. It requires two fields namely the email whose password we want to change and the new password.\nThe new password must respect a policy of at least 8 characters, at least one upper case letter, at least one lower case letter, numbers and at least one special character.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/update_password"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+
+        "/secret/types": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Secret"
+                ],
+                "summary": "Get available secret type, we must provide the bearer token",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/secret/create": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Secret"
+                ],
+                "summary": "create a new secret",
+                "requestBody": {
+                    "description": "This will create a new secret for user. So to do that we must provide the bearer token we get when we logged in in the request authorization header and in the request body we must provide 'name'(the name of the secret), 'owner_uid'(uid of the owner of this secret), 'secret_type'(the type of the secret currently there are 3 types: *other*, *credentials* and *file*), 'app_type'(the type of the app for this secret), 'secret'(an object which contain the secret info, ex: if secret_type is *credentials* and app_type is *ldap* the secret object must contain all the required fields of ldap like {'hostname':'..', 'password':'..', 'dn':'..'}..but if secret_type is file or other the secret object can contain anything)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/create_secret"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/secret/update": {
+            "put": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Secret"
+                ],
+                "summary": "update a secret",
+                "requestBody": {
+                    "description": "This will update a secret for user. So to do that we must provide the bearer token we get when we logged in in the request authorization header and in the request body we must provide 'secret_id'(id of this secret), 'name'(this is optional ), 'safe_id'(the safe_id of the safe we want to move this secret to), 'secret'(an object which contain the secret info, ex: if secret_type is *credentials* and app_type is *ldap* the secret object must contain all the required fields of ldap like {'hostname':'..', 'password':'..', 'dn':'..'}..but if secret_type is file or other the secret object can contain anything)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/update_secret"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/secret/delete": {
+            "delete": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Secret"
+                ],
+                "summary": "delete a secret",
+                "requestBody": {
+                    "description": "This will delete a secret for user. So to do that we must provide the bearer token we get when we logged in in the request authorization header and in the request body we must provide 'secret_id'(id of the secret)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/delete_secret"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/secret/all": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Secret"
+                ],
+                "summary": "Get all the secret of a user",
+                "requestBody": {
+                    "description": "Get all the secret of a user. So to do that we must provide the bearer token we get when we logged in in the request authorization header and in the request body we must provide",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/all_secrets"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/secret/safe/create": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Secret"
+                ],
+                "summary": "create a new application ",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/create_strongbox"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/secret/safe/all": {
+            "get": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Secret"
+                ],
+                "summary": "This will return the safe of the users",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/secret/safe/safe_secrets": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Secret"
+                ],
+                "summary": "This will retur secrets of a user in a strongbox",
+                "requestBody": {
+                    "description": "xx",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/safe_secrets"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/secret/user/safe/all": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Secret"
+                ],
+                "summary": "Get all the safe of a user",
+                "requestBody": {
+                    "description": "This will return all the safe of a user",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/all_secrets"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },"401":{"description": "Unhothorized. This means we are not authenticated with the bearer token"},
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/secret/propagate": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Secret"
+                ],
+                "summary": "Propagate a secret",
+                "requestBody": {
+                    "description": "This will propagate a secret (basicaly azumaril will change password of a service) for now azumaril can propagate secret of type credentials. So to do that we must provide the bearer token we get when we logged in in the request authorization header and in the request body we must provide 'account_id'(the connected user uid) 'admin_secret_id'(the secret of the admin ex: if we want to propagate a secret of type *credentials* and the app type of this secret is sql we need admin credentials to update a user password), 'user_secret_id'(the secret of the user. ex: if the app type of this secret is sql we need the user credentials in it to update the password so secret must contain *hostname*, *username*, *password*)",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/propagate"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        },
+        "/secret/propagate_history": {
+            "post": {
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "tags": [
+                    "Secret"
+                ],
+                "summary": "Password propagation history",
+                "requestBody": {
+                    "description": "Get a user's password propagation history",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/propagate_history"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Failed. There was something bad in the resuest params"
+                    },
+                    "401": {
+                        "description": "Unhothorized. This means we are not authenticated with the bearer token"
+                    },
+                    "404": {
+                        "description": "Failed. Not found"
+                    }
+                }
+            }
+        }
+        
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        },
+        "schemas": {
+            "registerRequest": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "username": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "Auth_Register": {
+                "type": "object",
+                "properties": {
+                    "firstname": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "tel":{
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "managerID":{
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "businessCategory":{
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "2fa":{
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "Organigram_Register": {
+                "type": "object",
+                "properties": {
+                    "firstname": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "tel":{
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "role":{
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "managerID":{
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "businessCategory":{
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "2fa":{
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "Auth_change_password": {
+                "type": "object",
+                "properties": {
+                    "uid": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "oldPassword": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "newPassword": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "Auth_reset_password": {
+                "type": "object",
+                "properties": {
+                    "newPassword": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "forgot_password": {
+                "type": "object",
+                "properties": {
+                    "uid": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "Auth_admin_change_password": {
+                "type": "object",
+                "properties": {
+                    "user_uid": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "admin_uid": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "admin_password": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "newPassword": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+
+            "Auth_update": {
+                "type": "object",
+                "properties": {
+                    "uid": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "firstname": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "tel":{
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "loginShell":{
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "Auth_right_request": {
+                "type": "object",
+                "properties": {
+                    "user_uid": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "group_name": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "Auth_grant_deny": {
+                "type": "object",
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "authentication": {
+                "type": "object",
+                "properties": {
+                    "uid": {
+                        "type": "string",
+                        "format": "Authuid"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "2FAreg": {
+                "type": "object",
+                "properties": {
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "2FAlog": {
+                "type": "object",
+                "properties": {
+                    "uid": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "code": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "activation": {
+                "type": "object",
+                "properties": {
+                    "uid": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "activation_code": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "userChilds": {
+                "type": "object",
+                "properties": {
+                    "uid": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "add_manager": {
+                "type": "object",
+                "properties": {
+                    "uid": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "managerID": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "Usergroup": {
+                "type": "object",
+                "properties": {
+                    "user_dn": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "password": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "base_srch": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "filter": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "attr": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "size": {
+                        "type": "integer",
+                        "format": "integer"
+                    }
+                }
+            },
+            "organigrame": {
+                "type": "object",
+                "properties": {
+                    "basedn": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "searchFilter": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "deleteAddRole": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "create_app": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "fields": {
+                        "type":"object",
+                        "format":"object",
+                        "example":{
+                            "hostname":true,
+                            "username":true,
+                            "password":true
+                        }
+                    }
+                }
+            },
+            "create_secret": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "owner_uid": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "secret": {
+                        "type": "object",
+                        "format": "object",
+                        "example":{
+                            "password":"string"
+                        }
+                    },
+                    "safe_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "secret_type": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "app_type": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "update_secret": {
+                "type": "object",
+                "properties": {
+                    "secret_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "safe_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "secret": {
+                        "type": "object",
+                        "format": "object",
+                        "example":{
+                            "password":"string"
+                        }
+                    }
+                }
+            },
+            "delete_secret": {
+                "type": "object",
+                "properties": {
+                    "secret_id": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "all_secrets": {
+                "type": "object",
+                "properties": {
+                    "owner_uid": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "safe_all": {
+                "type": "object",
+                "properties": {
+                    "owner_uid": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "create_strongbox": {
+                "type": "object",
+                "properties": {
+                    "owner_uid": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "safe_secrets": {
+                "type": "object",
+                "properties": {
+                    "owner_uid": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "safe_id": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "propagate": {
+                "type": "object",
+                "properties": {
+                    "admin_secret_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "user_secret_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "account_id": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "propagate_history": {
+                "type": "object",
+                "properties": {
+                    "uid": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "delete_app": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "add_acount": {
+                "type": "object",
+                "properties": {
+                    "app_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "username": {
+                        "type": "string",
+                        "format": "OS"
+                    },
+                    "user_uid": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "userAccount": {
+                "type": "object",
+                "properties": {
+                    "app_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "user_uid": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "userAllAccount": {
+                "type": "object",
+                "properties": {
+                    "user_uid": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "app_account": {
+                "type": "object",
+                "properties": {
+                    "app_id": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "update_password": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "newPassword": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "search_account": {
+                "type": "object",
+                "properties": {
+                    "user_uid" : {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "app_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "account_username": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+
+            "create_profil": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "app_type_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "id_technical_profil": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example":[
+                            "idTechnicalProfil"
+                        ]
+                    },
+                    "visibility": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example":[
+                            "visibility"
+                        ]
+                    },
+                    "criticity_level": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "update_profil": {
+                "type": "object",
+                "properties": {
+                    "profil_role_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "app_type_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "id_technical_profil": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example":[
+                            "idTechnicalProfil"
+                        ]
+                    },
+                    "visibility": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example":[
+                            "rh"
+                        ]
+                    },
+                    "criticity_level": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "create_technical_profil": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "app_type_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "visibility": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example":[
+                            "visibility"
+                        ]
+                    },
+                    "criticity_level": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "update_technical_profil": {
+                "type": "object",
+                "properties": {
+                    "technical_profil_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "app_type_id": {
+                        "type": "string",
+                        "format": "string"
+                    },
+                    "visibility": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example":[
+                            "rh"
+                        ]
+                    },
+                    "criticity_level": {
+                        "type": "integer"
+                    }
+                }
+            },
+            "deleteRole": {
+                "type": "object",
+                "properties": {
+                    "profil_role_id": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "deleteTechnicalProfil": {
+                "type": "object",
+                "properties": {
+                    "technical_profil_id": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "organigram_create_app": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "format": "string",
+                        "example":"comptaxe"
+                    },
+                    "type": {
+                        "type": "string",
+                        "format": "string",
+                        "example":"ldap"
+                    },
+                    "app_creds": {
+                        "type":"object",
+                        "format":"object",
+                        "example":{
+                            "server":"server",
+                            "user_dn":"user_dn",
+                            "base_dn":"base_dn",
+                            "password":"password",
+                            "group":"group"
+                        }
+                    }
+                }
+            },
+
+            "askAproval": {
+                "type": "object",
+                "properties": {
+                    "type_of_request": {
+                        "type": "string",
+                        "format": "string",
+                        "example": "ask or remove"
+                    },
+                    "business_role_ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example":[
+                            "business_role_id"
+                        ]
+                    }
+                }
+            },
+            "directAproval": {
+                "type": "object",
+                "properties": {
+                    "business_role_ids": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "example":[
+                            "business_role_id"
+                        ]
+                    },
+                    "userid": {
+                        "type": "string",
+                        "format": "string"
+                    }
+                }
+            },
+            "grant_deny": {
+                "type": "object",
+                "properties": {
+                    "approved_info": {
+                        "type": "array",
+                        "items": {
+                            "type":"object",
+                            "format":"object"
+                        },
+                        "example":[
+                            {
+                                "state": "approved",
+                                "id": "62c8308ac0000007e33er01",
+                                "name": "technical_prf01"
+                            },
+                            {
+                                "state": "rejected",
+                                "id": "62c8308ac3100000083004a5",
+                                "name": "technical_prf02"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
