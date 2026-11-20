@@ -16,7 +16,7 @@ import pyotp
 import os
 from bson import ObjectId
 
-client = pymongo.MongoClient("mongodb://db002usr:Hav*1cha@10.0.0.185:27017")
+client = pymongo.MongoClient(os.environ["MONGO_URI"])
 db002 = client['db002']
 creds = db002["creds"]
 FA2 = db002["2FA"]

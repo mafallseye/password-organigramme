@@ -1,3 +1,4 @@
+import os
 import traceback
 from flask import jsonify, Blueprint
 from pymongo import MongoClient
@@ -5,7 +6,7 @@ from modules.required_packages import isErrorKey, run_dag, validation
 from bson import ObjectId
 import datetime
 
-client = MongoClient("mongodb://db002usr:Hav*1cha@10.0.0.185:27017")
+client = MongoClient(os.environ["MONGO_URI"])
 SECRET_REQU = Blueprint("secret", __name__)
 
 db002 = client["db002"]

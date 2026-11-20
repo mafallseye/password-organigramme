@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify, request, Blueprint
 from flask_swagger_ui import get_swaggerui_blueprint
 from bson import ObjectId
@@ -7,7 +8,7 @@ from dateutil.relativedelta import relativedelta
 from modules.ldapauth import isErrorKey
 from modules.required_packages import validation
 
-client = pymongo.MongoClient("mongodb://db002usr:Hav*1cha@10.0.0.185:27017")
+client = pymongo.MongoClient(os.environ["MONGO_URI"])
 db002 = client['db002']
 
 applications = db002["applications"]

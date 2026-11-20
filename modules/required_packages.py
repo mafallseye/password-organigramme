@@ -1,3 +1,4 @@
+import os
 import hashlib
 import random
 import re
@@ -13,7 +14,7 @@ import jwt
 import requests
 from password_strength import PasswordPolicy
 
-client = pymongo.MongoClient("mongodb://db002usr:Hav*1cha@10.0.0.185:27017")
+client = pymongo.MongoClient(os.environ["MONGO_URI"])
 db002 = client['db002']
 creds = db002["creds"]
 password_expiration = 90
